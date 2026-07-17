@@ -1,4 +1,13 @@
 class Solution {
+
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>>ans=new ArrayList<>();
+        List<Integer>list=new ArrayList<>();
+
+        tofind(0,ans,list,nums);
+        return ans;
+    }
     //TO find the subsets :-Recurssion problem 
     public void  tofind(int i,List<List<Integer>>ans,
     List<Integer>list,int [] nums){
@@ -14,11 +23,5 @@ class Solution {
 
 
     }
-    public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>>ans=new ArrayList<>();
-        List<Integer>list=new ArrayList<>();
-
-        tofind(0,ans,list,nums);
-        return ans;
-    }
+    
 }
