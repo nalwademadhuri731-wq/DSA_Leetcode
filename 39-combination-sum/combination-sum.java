@@ -1,35 +1,28 @@
-
 class Solution {
 
-    public void backtrack(int index, int[] candidates, int target,
-                          List<Integer> current, List<List<Integer>> result) {
-
-        if (target == 0) {
-            result.add(new ArrayList<>(current));
+    public void  tofind(int i,int sum,List<Integer> list,List<List<Integer>>ans,int target,int []arr){
+          if(sum==target){
+            ans.add(new ArrayList<>(list));
             return;
-        }
-
-        if (index == candidates.length || target < 0) {
+          }
+          if(i==arr.length||sum>target){
             return;
-        }
+          }
+          sum=sum+arr[i];
+          list.add(arr[i]);
+          tofind(i,sum,list,ans,target,arr);
+          sum=sum-arr[i];
+          list.remove(list.size()-1);
+          tofind(i+1,sum,list,ans,target,arr);
 
-        // Take the current element
-        current.add(candidates[index]);
-        backtrack(index, candidates, target - candidates[index], current, result);
 
-        // Backtrack
-        current.remove(current.size() - 1);
-
-        // Skip the current element
-        backtrack(index + 1, candidates, target, current, result);
     }
-
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-
-        List<List<Integer>> result = new ArrayList<>();
-
-        backtrack(0, candidates, target, new ArrayList<>(), result);
-
-        return result;
+        List<List<Integer>>ans=new ArrayList<>();
+        List<Integer>list=new ArrayList<>();
+        int i=0;
+        int sum=0;
+        tofind(i,sum,list,ans,target,candidates);
+        return ans;
     }
 }
