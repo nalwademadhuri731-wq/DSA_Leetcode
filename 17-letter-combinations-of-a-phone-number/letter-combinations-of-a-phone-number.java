@@ -1,5 +1,5 @@
 class Solution {
-    public void tofind(int j,int k,List<String> list,String digits, String [] map,String str){
+    public void tofind(int k,List<String> list,String digits, String [] map,String str){
         if(str.length()==digits.length()){
            String  s=str;
            list.add(s);
@@ -9,7 +9,7 @@ class Solution {
 
         for(int i=0;i<demo.length();i++){
            
-            tofind(j+1,k+1,list,digits,map,str+demo.charAt(i));
+            tofind(k+1,list,digits,map,str+demo.charAt(i));
         }
 
     }
@@ -30,7 +30,7 @@ class Solution {
             "","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"
         };
         String str="";
-        tofind(j,k,list,digits,map,str);
+        tofind(k,list,digits,map,str);
         return list;
     }
 }
