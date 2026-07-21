@@ -1,37 +1,22 @@
 class Solution {
+    public void tofind(int j,List<String> list,String digits, HashMap<Character,String>map,String str){
+        if(str.length()==digits.length()){
+           String  s=str;
+           list.add(s);
+           return;
+        }
+        String demo=map.get(digits.charAt(j));
 
-    public void tofind(HashMap<Character,String> map,
-                       String str,
-                       String digits,
-                       List<String> list,
-                       int j){
-
-        if(j==digits.length()){
-            list.add(str);
-            return;
+        for(int i=0;i<demo.length();i++){
+            
+            tofind(j+1,list,digits,map,str+demo.charAt(i));
         }
 
-        String letters = map.get(digits.charAt(j));
-
-        for(int i=0;i<letters.length();i++){
-
-            tofind(map,
-                   str + letters.charAt(i),
-                   digits,
-                   list,
-                   j+1);
-        }
     }
-
     public List<String> letterCombinations(String digits) {
-
-        List<String> list = new ArrayList<>();
-
-        if(digits.length()==0)
-            return list;
-
-        HashMap<Character,String> map = new HashMap<>();
-
+          List<String> list=new ArrayList<>();
+        int j=0;
+        HashMap<Character,String>map=new HashMap<>();
         map.put('2',"abc");
         map.put('3',"def");
         map.put('4',"ghi");
@@ -40,9 +25,10 @@ class Solution {
         map.put('7',"pqrs");
         map.put('8',"tuv");
         map.put('9',"wxyz");
-
-        tofind(map,"",digits,list,0);
-
+        String str="";
+        tofind(j,list,digits,map,str);
         return list;
     }
 }
+
+
