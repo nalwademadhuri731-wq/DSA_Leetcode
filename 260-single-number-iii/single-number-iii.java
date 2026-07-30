@@ -1,21 +1,25 @@
 class Solution {
     public int[] singleNumber(int[] nums) {
-        Arrays.sort(nums);
+       
         int [] arr=new int[2];
-        int j=0;
-        for(int i=1;i<nums.length-1;i++){
-         if(nums[i]!=nums[i+1]&&nums[i]!=nums[i-1]){
-            arr[j++]=nums[i];
+        int xor=0;
+        for(int i=0;i<nums.length;i++){
+           xor^=nums[i];
          }
-        }
-      
-            if(nums[0]!=nums[1]){
-                arr[j++]=nums[0];
-            }
-            if(nums[nums.length-1]!=nums[nums.length-2]){
-                 arr[j++]=nums[nums.length-1];
-            }
+         int num1=0;
+         int num2=0;
+         int diff=xor&(-xor)    ; //rightmost element
         
+        for(int i=0;i<nums.length;i++){
+          if((nums[i]&diff)==0){
+           num1^=nums[i];
+          }else{
+             num2^=nums[i];
+          }
+         }
+      
+        arr[0]=num1;
+        arr[1]=num2;
         return arr;
     }
 }
