@@ -10,7 +10,7 @@ class Solution {
         while(r<nums.length){
             if(nums[r]==0)z+=1;
             
-            while(z>k){
+            if(z>k){
                 if(nums[l]==0)z--;
                 l++; 
               }
